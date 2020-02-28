@@ -22,10 +22,11 @@ class AddUserComponent extends Component{
     saveUser = (e) => {
         
         e.preventDefault();
-        let user = {username: this.state.username, password: this.state.password, firstName: this.state.firstName, lastName: this.state.lastName, age: this.state.age, salary: this.state.salary};
+        let user = {username: this.state.username.value, password: this.state.password.value, 
+            firstName: this.state.firstName.value, lastName: this.state.lastName.value, age: this.state.age.value, salary: this.state.salary.value};
         ApiService.addUser(user)
             .then(res => {
-                this.setState({message : 'User added successfully.'});
+                //this.setState({message : 'User added successfully.'});
                 this.props.history.push('/users');
             });
     }
@@ -37,7 +38,7 @@ class AddUserComponent extends Component{
         return(
             <div>
                 <h2 className="text-center">Add User</h2>
-                <form>
+                <form onSubmit = {this.saveUser}>
                 <div className="form-group"> 
                 <TextField id="standard-basic"
                         inputRef={(input) => this.state.username = input }
@@ -65,7 +66,7 @@ class AddUserComponent extends Component{
                     <TextField id="standard-basic" type="number" label="salary" inputRef={(input) => this.state.salary = input} />
                 </div>
                 {this.state.username}            
-                <Button variant="contained" color="primary" onClick={this.saveUser}>  Save</Button>
+                <Button type="submit" variant="contained" color="primary" >  Save</Button>
             </form>
     </div>
         );

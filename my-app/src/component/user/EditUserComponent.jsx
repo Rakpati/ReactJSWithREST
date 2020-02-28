@@ -42,10 +42,10 @@ class EditUserComponent extends Component {
 
     saveUser = (e) => {
         e.preventDefault();
-        let user = {id: this.state.id, password: this.state.password, firstName: this.state.firstName, lastName: this.state.lastName, age: this.state.age, salary: this.state.salary};
+        let user = {id: this.state.id, firstName: this.state.firstName, lastName: this.state.lastName, age: this.state.age, salary: this.state.salary};
         ApiService.editUser(user)
             .then(res => {
-                this.setState({message : 'User added successfully.'});
+                //this.setState({message : 'User added successfully.'});
                 this.props.history.push('/users');
             });
     }
@@ -57,23 +57,24 @@ class EditUserComponent extends Component {
                 <form>
 
                     <div className="form-group">
-                        <TextField id="standard-basic" label="username" value={this.state.username} onChange={this.onChange} />
+                        <TextField id="standard-basic" name="username"
+                        label="username" value={this.state.username}  onChange={this.onChange}/>
                     </div>
 
                     <div className="form-group">
-                        <TextField id="standard-basic" label="firstName" value={this.state.firstName} onChange={this.onChange} />
+                        <TextField id="standard-basic" label="firstName" name="firstName" value={this.state.firstName} onChange={this.onChange} />
                     </div>
 
                     <div className="form-group">
-                        <TextField id="standard-basic" label="lastName" value={this.state.lastName} onChange={this.onChange} />
+                        <TextField id="standard-basic" label="lastName" name="lastName" value={this.state.lastName} onChange={this.onChange} />
                     </div>
 
                     <div className="form-group">
-                        <TextField id="standard-basic" type="number" label="age" value={this.state.age} onChange={this.onChange} />
+                        <TextField id="standard-basic" type="number" label="age" name="age" value={this.state.age} onChange={this.onChange} />
                     </div>
 
                     <div className="form-group">
-                      <TextField id="standard-basic" label="salary" type="number" value={this.state.salary} onChange={this.onChange} />
+                      <TextField id="standard-basic" label="salary" name="salary" type="number" value={this.state.salary} onChange={this.onChange} />
                     </div>
 
                     <Button variant="contained" color="primary" onClick={this.saveUser}> Save</Button>
